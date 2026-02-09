@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-chrome-cdp",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Direct Chrome DevTools Protocol (CDP) integration for n8n",
   "license": "MIT",
   "homepage": "https://github.com/yanivka/n8n-nodes-chrome-cdp.git",
