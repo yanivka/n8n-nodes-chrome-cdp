@@ -41,7 +41,7 @@ export class ChromeCdpGetWebPage implements INodeType {
 				displayName: 'Wait for Navigation',
 				name: 'waitForNavigation',
 				type: 'boolean',
-				default: true,
+				default: false,
 				description: 'Whether to wait for the page load event before extracting data', // Removed period
 			},
 			{

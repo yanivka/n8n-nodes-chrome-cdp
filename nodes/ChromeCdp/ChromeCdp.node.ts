@@ -44,7 +44,7 @@ export class ChromeCdp implements INodeType {
 				displayName: 'Wait for Page Load',
 				name: 'waitForPage',
 				type: 'boolean',
-				default: false,
+				default: true,
 				description: 'Whether to wait for the page load event before returning',
 			},
 		],
