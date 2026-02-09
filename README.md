@@ -1,51 +1,56 @@
+# n8n-nodes-chrome-cdp
 
+A high-performance n8n community node package providing direct integration with the **Chrome DevTools Protocol (CDP)**. This package is designed for low-level browser control, efficient tab management, and high-speed data extraction.
 
-n8n-nodes-chrome-cdp
-A high-performance n8n community node package providing direct integration with the Chrome DevTools Protocol (CDP). Designed for low-level browser control, tab management, and efficient data extraction in self-hosted environments.
+## Features
 
-Features
-Chrome: Create Tab: Open new tabs (targets) with optional navigation and "Wait for Page Load" events.
+* **Chrome: Create Tab**: Open new browser targets with optional navigation and native "Wait for Page Load" event handling.
+* **Chrome: Read Web Page**: Extract `innerText` or `outerHTML` from an existing tab session via WebSocket.
+* **Chrome: Run Script**: Execute custom asynchronous JavaScript within the page context and return JSON results directly to n8n.
 
-Chrome: Read Web Page: Extract innerText (text) or outerHTML (raw source) from an existing tab using its WebSocket URL.
+## Installation
 
-Chrome: Run Script: Execute custom JavaScript within a tab's context with support for async/await and JSON result returns.
+Follow the [official n8n guide](https://docs.n8n.io/integrations/community-nodes/installation/) to install this package:
 
-Installation
-For Self-Hosted n8n (Docker)
-This package is designed for portability. To use it in a Docker environment:
+1. Go to **Settings > Community Nodes** in your n8n instance.
+2. Click on **Install a community node**.
+3. Enter `n8n-nodes-chrome-cdp` in the **npm Package Name** field.
+4. Agree to the risks and click **Install**.
 
-Build the project on the host machine: npm run build (This will compile the TypeScript and bundle the chrome-remote-interface dependency into the dist/node_modules folder).
+## Prerequisites
 
-Mount the volume in the docker run command or docker-compose.yaml: -v "/project-root/dist:/home/node/.n8n/custom/node_modules/n8n-nodes-chrome-cdp"
+This node requires a running Chromium-based browser (Chrome, Edge, or Brave) with the remote debugging port enabled.
 
-Restart n8n to register the nodes.
+### Recommended Startup Command
+Launch your browser with the following flags to allow n8n to connect:
 
-Prerequisites
-You must run a Chromium-based browser with the remote debugging port open.
+```bash
+chrome --remote-debugging-port=9222 --remote-debugging-address=0.0.0.0 --incognito
+```
 
-Recommended Startup Command: chrome --remote-debugging-port=9222 --remote-debugging-address=0.0.0.0 --incognito --user-data-dir=$(mktemp -d -t 'chrome-remote_profile')
+Note: Ensure your firewall or network settings allow traffic on port 9222.
 
-Note: Use host.docker.internal as the Host in n8n nodes to connect from the container to the host machine.
+### Node Documentation
+```markdown
+## Nodes
 
-Node Descriptions
-1. Create Tab
-Host: The IP or hostname of the Chrome instance (default: host.docker.internal).
+### 1. Chrome: Create Tab
+Initializes a new browser tab and returns connection details.
+* **Host**: The IP or hostname of your Chrome instance.
+* **URL**: The destination address (defaults to `about:blank`).
+* **Wait for Page Load**: If enabled, pauses execution until the browser triggers `loadEventFired`.
 
-URL: The initial page to load (default: about:blank).
+### 2. Chrome: Read Web Page
+Connects to an active session to pull content without re-navigating.
+* **WebSocket URL**: The `wsUrl` provided by the Create Tab node.
+* **Extract Type**: Choose **Text** for a clean string or **HTML** for the raw source code.
+* **Wait for Navigation**: Ensures the DOM is fully settled before extraction.
 
-Wait for Page Load: If enabled, the node will wait for the browser's loadEventFired before returning.
+### 3. Chrome: Run Script
+Injects and executes custom logic inside the browser.
+* **JavaScript Code**: Your script. Supports `async/await`. Use `return` to pass data back to the workflow.
+* **Wait for Navigation**: Optional flag to delay execution until the page is ready.
 
-2. Read Web Page
-WebSocket URL: Pass the wsUrl from the Create Tab node.
+## License
 
-Extract Type: Choose between Text or HTML.
-
-Wait for Navigation: Ensures the page is fully settled before reading content.
-
-3. Run Script
-JavaScript Code: Custom script to run. Use return to send data back to n8n.
-
-Wait for Navigation: Optional pause to ensure the target is ready for script execution.
-
-License
-MIT
+[MIT](LICENSE)
