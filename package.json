@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-chrome-cdp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Direct Chrome DevTools Protocol (CDP) integration for n8n",
   "license": "MIT",
   "homepage": "https://bitflip.studio",
