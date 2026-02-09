@@ -1,0 +1,56 @@
+{
+  "name": "n8n-nodes-chrome-cdp",
+  "version": "0.1.0",
+  "description": "Direct Chrome DevTools Protocol (CDP) integration for n8n",
+  "license": "MIT",
+  "homepage": "https://bitflip.studio",
+  "keywords": [
+    "n8n-community-node-package",
+    "chrome",
+    "cdp",
+    "devtools"
+  ],
+  "author": {
+    "name": "Yaniv Mantel",
+    "email": "yaniv@bitflip.studio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yanivmantel/n8n-nodes-chrome-cdp.git"
+  },
+  "scripts": {
+    "build": "n8n-node build && mkdir -p dist/node_modules && cp -R node_modules/chrome-remote-interface dist/node_modules/",
+    "build:watch": "tsc --watch",
+    "dev": "n8n-node dev",
+    "lint": "n8n-node lint",
+    "lint:fix": "n8n-node lint --fix",
+    "release": "n8n-node release",
+    "prepublishOnly": "n8n-node prerelease"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "strict": true,
+    "nodes": [
+      "dist/nodes/ChromeCdp/ChromeCdp.node.js",
+      "dist/nodes/ChromeCdp/ChromeCdpGetWebPage.node.js",
+      "dist/nodes/ChromeCdp/ChromeCdpRunScript.node.js"
+    ]
+  },
+  "dependencies": {
+    "chrome-remote-interface": "^0.33.3"
+  },
+  "devDependencies": {
+    "@n8n/node-cli": "*",
+    "@types/chrome-remote-interface": "^0.33.0",
+    "eslint": "9.32.0",
+    "prettier": "3.6.2",
+    "release-it": "^19.0.4",
+    "typescript": "5.9.2"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}

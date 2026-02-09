@@ -1,0 +1,17 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Copy File to Clipboard",
+      "type": "shell",
+      // AppleScript to copy the file object (not text) to clipboard
+      "command": "osascript -e 'set the clipboard to POSIX file \"${file}\"'",
+      "presentation": {
+        "reveal": "silent", // Don't open the terminal
+        "echo": false,
+        "focus": false
+      },
+      "problemMatcher": []
+    }
+  ]
+}
