@@ -30,9 +30,7 @@ chrome --remote-debugging-port=9222 --remote-debugging-address=0.0.0.0 --incogni
 
 Note: Ensure your firewall or network settings allow traffic on port 9222.
 
-### Node Documentation
-```markdown
-## Nodes
+## Node Documentation
 
 ### 1. Chrome: Create Tab
 Initializes a new browser tab and returns connection details.
