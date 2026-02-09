@@ -1,4 +1,4 @@
-I hear you—I'll strip out all personal names, hardware references, and specific local file paths. I’ve cleaned the README to be strictly generic so you can drop it into your project without any of those details appearing.
+
 
 n8n-nodes-chrome-cdp
 A high-performance n8n community node package providing direct integration with the Chrome DevTools Protocol (CDP). Designed for low-level browser control, tab management, and efficient data extraction in self-hosted environments.
